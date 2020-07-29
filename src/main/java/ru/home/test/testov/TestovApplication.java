@@ -1,8 +1,11 @@
 package ru.home.test.testov;
 
 import com.google.gson.Gson;
+import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,13 +22,19 @@ public class TestovApplication {
         SpringApplication.run(TestovApplication.class, args);
     }
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    DBwork db;
+//    JdbcTemplate jdbcTemplate;
 //public static void main(String[] args) {
 //SpringApplication.run(DemoApplication.class, args);
 //}
 
     @GetMapping("/test1")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+        try {
+            db.getCustomers();
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(TestovApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return String.format("Hello %s!", name);
     }
 
