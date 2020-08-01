@@ -3,6 +3,7 @@
  */
 package ru.home.test.testov;
 
+import java.beans.PropertyVetoException;
 import java.util.List;
 
 /**
@@ -11,16 +12,16 @@ import java.util.List;
  */
 public interface WorkCRUD {
     
-    /**
-     *
-     * @return
-     */
-    public  List<TestTable> listAllVaulues();
     
-    public void createValue();
-    public void readValue();
-    public void updateValue();
-    public void deleteValue();
+    
+    public void createValue(TestTable tovar);
+    public TestTable readValue(int id);
+    public boolean updateValue(TestTable tovar,int id);
+    public boolean deleteValue(int id);
+
+    public List<TestTable> listTovars() throws PropertyVetoException;
+
+    
     
     
     

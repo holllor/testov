@@ -44,7 +44,12 @@ public class DBwork implements WorkCRUD {
         dataSource.setPassword("");
     }
 
-    public void getCustomers() throws PropertyVetoException {
+    /**
+     * вывод всего списка
+     * @return @throws PropertyVetoException
+     */
+    @Override
+    public List<TestTable> listTovars() throws PropertyVetoException {
 
 //        DataSource dataSource = getDataSource();
 //         Connection conn = null;
@@ -62,10 +67,10 @@ public class DBwork implements WorkCRUD {
                         rs.getString("column4"), rs.getString("column5"));
             }
         });
-
-        for (TestTable customer : results) {
-            System.out.println(customer);
-        }
+        return results;
+//        for (TestTable customer : results) {
+//            System.out.println(customer);
+//        }
     }
 
     /**
@@ -74,31 +79,31 @@ public class DBwork implements WorkCRUD {
     public static void main(String[] args) throws PropertyVetoException {
         // Retrieve all customers
         DBwork db = new DBwork();
-        db.getCustomers();
+        db.listTovars();
     }
 
     @Override
-    public List<TestTable> listAllVaulues() {
+    public void createValue(TestTable tovar) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void createValue() {
+    public TestTable readValue(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void readValue() {
+    public boolean updateValue(TestTable tovar,int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateValue() {
+    public boolean deleteValue(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void deleteValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+
+    
+   
 }
