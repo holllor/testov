@@ -1,8 +1,8 @@
 package ru.home.test.testov;
 
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
 import java.beans.PropertyVetoException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,10 +38,7 @@ public class TestovApplication {
 
 //    @Autowired
 //    DBwork db;
-//    JdbcTemplate jdbcTemplate;
-//public static void main(String[] args) {
-//SpringApplication.run(DemoApplication.class, args);
-//}
+
     @GetMapping("/test1")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         try {
@@ -52,6 +49,12 @@ public class TestovApplication {
         return String.format("Hello %s!", name);
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     * @throws PropertyVetoException
+     */
     @GetMapping("/tovars")
     public ResponseEntity<List<TestTable>> listTovars(@RequestParam(value = "name", defaultValue = "World") String name) throws PropertyVetoException {
         System.out.println(name);

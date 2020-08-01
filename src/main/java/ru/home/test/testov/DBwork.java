@@ -77,8 +77,7 @@ public class DBwork implements WorkCRUD {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws PropertyVetoException {
-        // Retrieve all customers
-        DBwork db = new DBwork();
+         DBwork db = new DBwork();
         db.listTovars();
     }
 
@@ -101,9 +100,6 @@ public class DBwork implements WorkCRUD {
     public boolean deleteValue(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-   
-
-    
+  
    
 }
