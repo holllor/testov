@@ -4,13 +4,9 @@
 let table1 = document.getElementById('test_test1_body');
 //console.log(table1.);
 //let tr = table1.insertRow(-1);
-
-
 let xhr = new XMLHttpRequest();
-
 xhr.open('GET', '/tovars');
 //xhr.responseType = 'json';
-
 xhr.send();
 
 xhr.onload = function () {
@@ -59,3 +55,10 @@ function viewTable1(){
 }
 console.log(table1.toString());
 //alert('testoviii'); 
+
+function createTovar1(){
+    let formDiv = document.getElementById('formTovar1');
+   formDiv.style.visibility = "visible";
+    //console.log(formDiv.style.visibility );
+    hideTable1();
+}

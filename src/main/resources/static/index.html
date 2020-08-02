@@ -11,15 +11,19 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script  type="text/javascript" src="js/rest.js" defer="defer" ></script>
         <!-- Latest compiled and minified CSS -->
-      <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+        <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="css/rest.css" /> 
+        <link rel="stylesheet" href="css/tovarForm.css" /> 
     </head>
     <body>
         <div  >
             <div class="all2">
                 <h1 style="text-align: center;">Тестовая страница для отработки задания.</h1>
-                <div>
+                <div class="table1">
 
+                    <button class="buttonCreate1"  value="testView" onclick="createTovar1()" >createTovar</button>
+                    <button class="hideTable1Button"  value="testHide" onclick="hideTable1()" >hideTable</button>
+                    <button class="hideTable1Button"  value="testView" onclick="viewTable1()" >viewTable</button>
                     <table id="test_test1" style="width: 100%;margin: 20px;">
                         <thead>
                             <tr>
@@ -35,8 +39,10 @@ and open the template in the editor.
 
                         </tbody>
                     </table>
-                    <button style="width: 100px;height: 30px;"  value="testHide" onclick="hideTable1()" >hideTable</button>
-                    <button style="width: 100px;height: 30px;"  value="testView" onclick="viewTable1()" >viewTable</button>
+
+                </div>
+                <div id="formTovar1" class="tovarForm1" >
+                    <p>klasdjfla;sfdjl;askfl;asfdlka;sf</p>
                 </div>
             </div>
         </div>
