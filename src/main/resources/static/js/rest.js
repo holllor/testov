@@ -47,11 +47,18 @@ xhr.onload = function () {
 
 function hideTable1(){
     let table1 = document.getElementById('test_test1');
+   
     table1.hidden = true;
+    
+}
+function hideForm1(){
+     let formDiv = document.getElementById('formTovar1');
+     formDiv.hidden=true;
 }
 function viewTable1(){
     let table1 = document.getElementById('test_test1');
     table1.hidden = false;
+    hideForm1();
 }
 console.log(table1.toString());
 //alert('testoviii'); 
@@ -59,6 +66,7 @@ console.log(table1.toString());
 function createTovar1(){
     let formDiv = document.getElementById('formTovar1');
    formDiv.style.visibility = "visible";
+   formDiv.hidden = false;
     //console.log(formDiv.style.visibility );
     hideTable1();
 }

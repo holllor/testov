@@ -57,7 +57,7 @@ public class TestovApplication {
      */
     @GetMapping("/tovars")
     public ResponseEntity<List<TestTable>> listTovars(@RequestParam(value = "name", defaultValue = "World") String name) throws PropertyVetoException {
-        System.out.println(name);
+//        System.out.println(name);
         List<TestTable> listTable = wCrud.listTovars();
 //        return new Gson().toJson(listTable);
         return listTable != null && !listTable.isEmpty()

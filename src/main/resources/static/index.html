@@ -21,10 +21,14 @@ and open the template in the editor.
                 <h1 style="text-align: center;">Тестовая страница для отработки задания.</h1>
                 <div class="table1">
 
-                    <button class="buttonCreate1"  value="testView" onclick="createTovar1()" >createTovar</button>
-                    <button class="hideTable1Button"  value="testHide" onclick="hideTable1()" >hideTable</button>
-                    <button class="hideTable1Button"  value="testView" onclick="viewTable1()" >viewTable</button>
-                    <table id="test_test1" style="width: 100%;margin: 20px;">
+                    <button class="buttonCreate1"  value="testView" onclick="createTovar1()" >создать товар</button>
+                    <button class="hideTable1Button"  value="testHide" onclick="hideTable1()" >скрыть Таблицу</button>
+                    <button class="hideTable1Button"  value="testView" onclick="viewTable1()" >показать Таблицу</button>
+
+                    <button class="editButton"  value="testEdit"  >редактировать</button>
+                    <button class="hideTable1Button"  value="testDelete"  >удалить</button>
+                    <table id="test_test1" class="table2" border="1" >
+                        <caption style="margin: 10px;">Список товаров на складе.</caption>
                         <thead>
                             <tr>
                                 <th>test1</th>
@@ -42,7 +46,16 @@ and open the template in the editor.
 
                 </div>
                 <div id="formTovar1" class="tovarForm1" >
-                    <p>klasdjfla;sfdjl;askfl;asfdlka;sf</p>
+                    <fieldset>
+                        <legend>Карточка товара</legend>
+                        <div style="margin: 5px;"> <label >ИД товара:<input name="id1" style="width: 60px;margin-left: 62px;" type="text" readonly  ></label></div>
+                        <div style="margin: 5px;"> <label >Название товара:<input name="name1" style="width: 600px;margin-left: 12px;" type="text" ></label></div>
+                        <div style="margin: 5px;">  <label>Описание товара:<textarea name="descr1"  style="margin-left: 10px;" rows="3" cols="100" maxlength="1024" ></textarea></label></div>
+                        <div style="margin: 5px;"> <label >Дата добавления:<input name="date1" style="width: 100px;margin-left: 10px;" type="text" ></label></div>
+                        <div style="margin: 5px;"> <label >Номер ячейки:<input name="place1" style="width: 100px;margin-left: 35px;" type="text" ></label></div>
+                        <div style="margin:5px;"> <label >Зарезервирован:<input name="reserv1" style="margin-left: 16px;" type="checkbox" ></label></div>
+                    </fieldset>
+                     <button class="saveButton"  value="testSave"  >сохранить</button>
                 </div>
             </div>
         </div>
