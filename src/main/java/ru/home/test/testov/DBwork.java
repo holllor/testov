@@ -39,8 +39,8 @@ public class DBwork implements WorkCRUD {
         dataSource = new SimpleDriverDataSource();
         dataSource.setDriverClass(org.hsqldb.jdbc.JDBCDriver.class);
         dataSource.setUsername("SA");
-        dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001/test");
-//         dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001");
+//        dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001/test");
+         dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001");
         dataSource.setPassword("");
     }
 
@@ -67,10 +67,10 @@ public class DBwork implements WorkCRUD {
                         rs.getString("column4"), rs.getString("column5"));
             }
         });
+       
+        
         return results;
-//        for (TestTable customer : results) {
-//            System.out.println(customer);
-//        }
+      
     }
 
     /**
@@ -78,12 +78,19 @@ public class DBwork implements WorkCRUD {
      */
     public static void main(String[] args) throws PropertyVetoException {
          DBwork db = new DBwork();
-        db.listTovars();
+      List<TestTable> results= db.listTovars();
+       for (TestTable customer : results) {
+            System.out.println(customer);
+        }
     }
 
+    /**
+     *
+     * @param tovar
+     */
     @Override
     public void createValue(TestTable tovar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("create in HSQLDB "+tovar.getColumn2());
     }
 
     @Override
