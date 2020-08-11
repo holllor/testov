@@ -61,9 +61,12 @@ visibility: hidden;
     width: 97%;
   margin: 5px 20px 20px 20px;
   border-spacing: 0;
+  
  /* border-bottom-color: black;
   border: solid;*/
 }
+.table2 tr:focus {background: #6598C7; color:#fff; outline:0;}
+
 .tovarForm1{
     padding: 20px;
     margin: 5px;
@@ -74,4 +77,12 @@ visibility: hidden;
     font-size: 18px;
     font-weight: 600;
     color: darkslateblue;
+}
+
+.clickable:hover {
+    background-color: #CCC;
+}
+.active{
+   /* border-left: 3px solid #6598C7;*/
+    background-color: bisque;
 }

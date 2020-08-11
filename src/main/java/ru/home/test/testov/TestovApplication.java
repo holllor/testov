@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -71,24 +72,26 @@ public class TestovApplication {
      * @return
      */
     @PostMapping(value = "/tovars")
-    public ResponseEntity<?> create(@RequestBody TestTable tovar) {
+    //@ResponseBody
+    public ResponseEntity<String> create(@RequestBody TestTable tovar) {
+//        System.out.println(tovar.toString());
         wCrud.createValue(tovar);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    /**
-     *
-     * @param id
-     * @return
-     */
-    @GetMapping(value = "/tovars/{id}")
-    public ResponseEntity<TestTable> read(@PathVariable(name = "id") int id) {
-        TestTable tovar = wCrud.readValue(id);
-
-        return tovar != null
-                ? new ResponseEntity<>(tovar, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+//    /**
+//     *
+//     * @param id
+//     * @return
+//     */
+//    @GetMapping(value = "/tovars/{id}")
+//    public ResponseEntity<TestTable> read(@PathVariable(name = "id") int id) {
+//        TestTable tovar = wCrud.readValue(id);
+//
+//        return tovar != null
+//                ? new ResponseEntity<>(tovar, HttpStatus.OK)
+//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 
     @PutMapping(value = "/tovars/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody TestTable tovar) {

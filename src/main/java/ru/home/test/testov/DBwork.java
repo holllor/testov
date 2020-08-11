@@ -20,6 +20,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -39,13 +40,14 @@ public class DBwork implements WorkCRUD {
         dataSource = new SimpleDriverDataSource();
         dataSource.setDriverClass(org.hsqldb.jdbc.JDBCDriver.class);
         dataSource.setUsername("SA");
-//        dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001/test");
-         dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001");
+        dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001/test");
+//         dataSource.setUrl("jdbc:hsqldb:hsql://localhost:9001");
         dataSource.setPassword("");
     }
 
     /**
      * вывод всего списка
+     *
      * @return @throws PropertyVetoException
      */
     @Override
@@ -62,24 +64,23 @@ public class DBwork implements WorkCRUD {
                 new RowMapper<TestTable>() {
             @Override
             public TestTable mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return new TestTable(rs.getLong("id"), rs.getString("column1"),
-                        rs.getString("column2"), rs.getString("column3"),
-                        rs.getString("column4"), rs.getString("column5"));
+                return new TestTable(rs.getLong("id"), rs.getString("name"),
+                        rs.getString("description"), rs.getDate("create_date"),
+                        rs.getInt("place_storage"), rs.getBoolean("reserved"));
             }
         });
-       
-        
+
         return results;
-      
+
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws PropertyVetoException {
-         DBwork db = new DBwork();
-      List<TestTable> results= db.listTovars();
-       for (TestTable customer : results) {
+        DBwork db = new DBwork();
+        List<TestTable> results = db.listTovars();
+        for (TestTable customer : results) {
             System.out.println(customer);
         }
     }
@@ -89,8 +90,14 @@ public class DBwork implements WorkCRUD {
      * @param tovar
      */
     @Override
+    @Transactional
     public void createValue(TestTable tovar) {
-        System.out.println("create in HSQLDB "+tovar.getColumn2());
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.update(
+                "INSERT INTO public.tovar (NAME, DESCRIPTION, CREATE_DATE, PLACE_STORAGE, RESERVED) VALUES (?, ?,?,?,?)",
+                tovar.getName(), tovar.getDescription(), tovar.getCreate_date(), tovar.getPlace_storage(), tovar.isReserved());
+        System.out.println("create in HSQLDB " + tovar.toString());
+
     }
 
     @Override
@@ -99,7 +106,7 @@ public class DBwork implements WorkCRUD {
     }
 
     @Override
-    public boolean updateValue(TestTable tovar,int id) {
+    public boolean updateValue(TestTable tovar, int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -107,6 +114,5 @@ public class DBwork implements WorkCRUD {
     public boolean deleteValue(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-  
-   
+
 }

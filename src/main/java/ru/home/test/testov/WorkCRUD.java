@@ -20,6 +20,11 @@ public interface WorkCRUD {
 
     public boolean deleteValue(int id);
 
+    /**
+     *
+     * @return
+     * @throws PropertyVetoException
+     */
     public List<TestTable> listTovars() throws PropertyVetoException;
 
 }
