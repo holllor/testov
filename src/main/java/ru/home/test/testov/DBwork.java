@@ -100,19 +100,53 @@ public class DBwork implements WorkCRUD {
 
     }
 
+    /**
+     * запрос по id
+     *
+     * @param id
+     * @return объект
+     */
     @Override
     public TestTable readValue(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String selectSql = "select id,name, description, create_date, place_storage, reserved from public.tovar where id = ?";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        Object[] args = new Object[]{id};
+
+        return jdbcTemplate.query(selectSql, args,
+                new RowMapper<TestTable>() {
+            @Override
+            public TestTable mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return new TestTable(rs.getLong("id"), rs.getString("name"),
+                        rs.getString("description"), rs.getDate("create_date"),
+                        rs.getInt("place_storage"), rs.getBoolean("reserved"));
+            }
+        }).get(0);
     }
 
     @Override
     public boolean updateValue(TestTable tovar, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean isUpdate = false;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        Object[] args = new Object[]{tovar.getName(), tovar.getDescription(),tovar.getCreate_date() , tovar.getPlace_storage(), tovar.isReserved(),id};
+        int number = jdbcTemplate.update(
+                "UPDATE public.tovar SET NAME = ?, DESCRIPTION = ?, CREATE_DATE = ?, PLACE_STORAGE = ?, RESERVED = ? WHERE id = ?",args );
+        if (number == 1) {
+            isUpdate = true;
+        }
+        return isUpdate;
     }
 
     @Override
     public boolean deleteValue(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean isDelete = false;
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        Object[] args = new Object[]{id};
+        int number = jdbcTemplate.update(
+                "DELETE FROM public.tovar WHERE id = ?",args );
+        if (number == 1) {
+            isDelete = true;
+        }
+        return  isDelete;
     }
 
 }

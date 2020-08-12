@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 //import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +20,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -29,7 +34,10 @@ public class TestovApplication {
     private final WorkCRUD wCrud;
 
     public static void main(String[] args) {
-        SpringApplication.run(TestovApplication.class, args);
+        
+             SpringApplication.run(TestovApplication.class, args);
+       
+       
     }
 
     @Autowired
@@ -37,18 +45,6 @@ public class TestovApplication {
         this.wCrud = wCrud;
     }
 
-//    @Autowired
-//    DBwork db;
-
-    @GetMapping("/test1")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        try {
-            wCrud.listTovars();
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(TestovApplication.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return String.format("Hello %s!", name);
-    }
 
     /**
      *
@@ -79,22 +75,23 @@ public class TestovApplication {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-//    /**
-//     *
-//     * @param id
-//     * @return
-//     */
-//    @GetMapping(value = "/tovars/{id}")
-//    public ResponseEntity<TestTable> read(@PathVariable(name = "id") int id) {
-//        TestTable tovar = wCrud.readValue(id);
-//
-//        return tovar != null
-//                ? new ResponseEntity<>(tovar, HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/tovars/{id}")
+    public ResponseEntity<TestTable> read(@PathVariable(name = "id") int id) {
+        TestTable tovar = wCrud.readValue(id);
+
+        return tovar != null
+                ? new ResponseEntity<>(tovar, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
     @PutMapping(value = "/tovars/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody TestTable tovar) {
+     public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody TestTable tovar) {
+        System.out.println("  update!!  ");
         boolean upd = wCrud.updateValue(tovar, id);
 
         return upd

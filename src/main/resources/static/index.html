@@ -43,15 +43,14 @@ and open the template in the editor.
     <body>
         <div  >
             <div class="all2">
-                <h1 style="text-align: center;">Тестовая страница для отработки задания.</h1>
+                <h1 style="text-align: center;">Cтраница для проверки задания.</h1>
                 <div class="table1">
 
                     <button class="buttonCreate1"  value="testView" onclick="createTovar1()" >создать товар</button>
-                    <button class="hideTable1Button"  value="testHide" onclick="hideTable1()" >скрыть Таблицу</button>
                     <button class="hideTable1Button"  value="testView" onclick="viewTable1()" >показать Таблицу</button>
 
-                    <button class="editButton"  value="testEdit"  >редактировать</button>
-                    <button class="hideTable1Button"  value="testDelete"  >удалить</button>
+                    <button class="editButton"  value="testEdit" onclick="editTovar1()"  >редактировать</button>
+                    <button class="hideTable1Button"  value="testDelete" onclick="deleteTovar1()"  >удалить</button>
                     <table id="test_test1" class="table2" border="1" >
                         <caption style="margin: 10px;">Список товаров на складе.</caption>
                         <thead>
@@ -80,7 +79,7 @@ and open the template in the editor.
                         <div style="margin: 5px;">  <label>Описание товара:<textarea id="descr1" name="column2" style="margin-left: 10px;" rows="3" cols="100" maxlength="1024" ></textarea></label></div>
                         <div style="margin: 5px;"> <label >Дата добавления:<input id="datepik1" name="column3" style="width: 100px;margin-left: 10px;" type="text" ></label></div>
                         <div style="margin: 5px;"> <label >Номер ячейки:<input id="place1" name="column4" style="width: 100px;margin-left: 35px;" type="text" ></label></div>
-                        <div style="margin:5px;"> <label >Зарезервирован:<input id="reserv1" name="column5" style="margin-left: 16px;" type="checkbox" ></label></div>
+                        <div style="margin:5px;"> <label >Зарезервирован:<input id="reserv1" name="column5" style="margin-left: 16px;" type="checkbox"  ></label></div>
                     </fieldset>
                     <button class="saveButton"  value="testSave" onclick="saveTovar1()"  >сохранить</button>
 
